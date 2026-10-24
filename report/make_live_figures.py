@@ -41,7 +41,7 @@ for a, lab in ARMS:
     axs[1].plot(t.minute / 60.0, t.cost, color=cols[a], lw=1.6)
     axs[1].text(6.02, t.cost.iloc[-1], a[0], color=cols[a], fontsize=9, va="center")
 axs[0].axhline(CAL["p95_target_ms"], color=MUTED, lw=1, ls=":"); axs[0].text(0.02, CAL["p95_target_ms"] + 20, "p95 target %d ms" % CAL["p95_target_ms"], fontsize=7.5, color=MUTED)
-axs[0].set_xlabel("Trace hour"); axs[0].set_ylabel("p95 latency per trace hour, ms"); axs[0].set_yscale("log"); axs[0].legend(frameon=False, fontsize=7.5)
+axs[0].set_xlabel("Trace hour"); axs[0].set_ylabel("p95 latency per trace hour, ms"); axs[0].set_yscale("log"); axs[0].set_yticks([500, 800, 1000, 2000, 3000]); axs[0].yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:.0f}")); axs[0].yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter()); axs[0].legend(frameon=False, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=2)
 axs[1].set_xlabel("Trace hour"); axs[1].set_ylabel("Cumulative running cost, USD"); axs[1].set_xlim(0, 6.4)
 for ax in axs: ax.grid(color="#e3e2de", lw=0.6)
 fig.tight_layout(); fig.savefig(OUT / "live_latency_cost.png", bbox_inches="tight"); plt.close(fig)

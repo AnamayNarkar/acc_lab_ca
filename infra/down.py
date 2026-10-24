@@ -46,7 +46,19 @@ def leftovers():
     out = []
     for r in tagging.get_paginator("get_resources").paginate(TagFilters=[{"Key": "project", "Values": ["costscale"]}]):
         out += [x["ResourceARN"] for x in r["ResourceTagMappingList"] if ":budget/" not in x["ResourceARN"]]
-    return out
+    # the tagging index lags: drop terminated instances and volumes that no longer exist
+    live = []
+    for arn in out:
+        rid = arn.split("/")[-1]
+        if ":instance/" in arn:
+            st = [i["State"]["Name"] for rv in ec2.describe_instances(InstanceIds=[rid])["Reservations"] for i in rv["Instances"]]
+            if st and st[0] != "terminated": live.append(arn)
+        elif ":volume/" in arn:
+            try:
+                if ec2.describe_volumes(VolumeIds=[rid])["Volumes"]: live.append(arn)
+            except Exception: pass
+        else: live.append(arn)
+    return live
 left = None
 for _ in range(20):
     left = leftovers()

@@ -51,6 +51,16 @@ for arm in ("A_reactive", "B_static", "C_ml", "D_ml_spike"):
     sim["total_cost"] = sim["ec2_cost"] + sim["lambda_cost"]
     out["sim_replay"] = sim
     out["gap"] = {"lambda_share_pts": 100 * (out["lambda_share"] - sim["lambda_share"]), "cost_pct": 100 * (out["total_cost_cw"] - sim["total_cost"]) / max(sim["total_cost"], 1e-9)}
+    # per trace hour statistics
+    hrs = np.floor(r.t.values / interval).astype(int); r2 = r.assign(hr=hrs); hs = []
+    for h in range(6):
+        x = r2[(r2.hr == h)]; xo = x[x.status == 200]; tt = t[(t.minute // 60) == h]
+        e = xo[xo.backend == "ec2"].latency_ms; l = xo[xo.backend == "lambda"].latency_ms
+        hs.append(dict(hour=h, requests=int(len(x)), planned_rps=float(tt.planned_rps.mean()), observed_rps=float(tt.observed_rps.mean()), healthy=float(tt.healthy.mean()),
+                       lambda_share=float((xo.backend == "lambda").mean()) if len(xo) else 0.0, p95_ms=float(np.percentile(xo.latency_ms, 95)) if len(xo) > 5 else None,
+                       ec2_p50_ms=float(e.median()) if len(e) else None, ec2_p95_ms=float(np.percentile(e, 95)) if len(e) > 5 else None, errors=int((x.status != 200).sum())))
+    out["hours"] = hs
+    out["planned_requests_replay"] = sim["total_requests"]
     res[arm] = out
 json.dump(res, open(ROOT / "results/live_results.json", "w"), indent=1)
 for a, v in res.items():

@@ -1,0 +1,44 @@
+[
+ {
+  "hour": 0,
+  "t": 0.8897814750671387,
+  "forecast_base_rps": 45.52845219350078,
+  "desired": 3,
+  "base_cap_rps": 48
+ },
+ {
+  "hour": 1,
+  "t": 376.1808898448944,
+  "forecast_base_rps": 45.52845219350078,
+  "desired": 3,
+  "base_cap_rps": 48
+ },
+ {
+  "hour": 2,
+  "t": 751.4396162033081,
+  "forecast_base_rps": 45.52845219350078,
+  "desired": 3,
+  "base_cap_rps": 48
+ },
+ {
+  "hour": 3,
+  "t": 1126.7431030273438,
+  "forecast_base_rps": 45.52845219350078,
+  "desired": 3,
+  "base_cap_rps": 48
+ },
+ {
+  "hour": 4,
+  "t": 1502.1514737606049,
+  "forecast_base_rps": 45.52845219350078,
+  "desired": 3,
+  "base_cap_rps": 48
+ },
+ {
+  "hour": 5,
+  "t": 1877.459682226181,
+  "forecast_base_rps": 45.52845219350078,
+  "desired": 3,
+  "base_cap_rps": 48
+ }
+]

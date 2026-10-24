@@ -26,9 +26,9 @@ def build(pagemap=None):
     d.para("ML-Driven Hybrid Container and Serverless Resource Management on AWS", "c", size=15, after=14, spacing=1.15)
     d.para("Detailed Project Report", "c", size=14, after=40, spacing=1.15)
     d.para("Submitted by", "c", after=8, spacing=1.15)
-    for _ in range(3): d.para("[TO FILL: student name - student ID]", "c", size=15, bold=True, after=4, spacing=1.15)
+    for nm in ("Anamay Narkar - 16010123040", "Ananya Dhiman - 16010123041", "Anoushka Nelson - 16010123049"): d.para(nm, "c", size=15, bold=True, after=4, spacing=1.15)
     d.para("", after=30)
-    d.para("[TO FILL: programme, year]", "c", after=4, spacing=1.15); d.para("[TO FILL: institute, city]", "c", after=4, spacing=1.15)
+    d.para("B.Tech Computer Engineering, Final Year", "c", after=4, spacing=1.15); d.para("K.J. Somaiya School of Engineering, Mumbai", "c", after=4, spacing=1.15)
     d.para("[TO FILL: course name] (cloud computing project)", "c", after=4, spacing=1.15); d.para("October 2026", "c", after=30, spacing=1.15)
     d.para("Repository: [TO FILL]", "c", size=11, spacing=1.15)
     # ------------------------------------------------ abstract
@@ -234,7 +234,7 @@ def build(pagemap=None):
     # ------------------------------------------------ 9 prediction wrong
     d.h1("9. What happens when the prediction is wrong")
     d.para("The two directions of error behave differently, and the design makes the expensive direction mild.")
-    d.bullet("**Under-prediction (base too small).** Load above the base goes to Lambda. Nothing is dropped, latency of the overflow is Lambda's (higher on a cold start), and cost rises by the Lambda price difference only for the excess. This is the failure the architecture is built to absorb.")
+    d.bullet("**Under-prediction (base too small).** Load above the base goes to Lambda, so in the simulation nothing is dropped and cost rises only by the Lambda price difference for the excess. The live spike arm (Section 8.8) showed the caveat: no request failed, but latency suffered while EC2 was fed up to its full capacity and the weights caught up. The architecture absorbs the load; it does not by itself protect latency.")
     d.bullet("**Over-prediction (base too large).** Containers run idle. Cost rises by f per idle unit-minute until the next decision; no request is harmed. The asymmetry f versus L is what pushes q* above 0.5.")
     d.bullet("**Slow reaction.** A purely reactive scaler is wrong in the damaging way: it under-provisions during a rise and has no fallback, so load is dropped or delayed.")
     sp = FC["spike_test_ec2"]
@@ -244,7 +244,7 @@ def build(pagemap=None):
             [[f"x{m}", usd(sp[m]["hybrid_ML"]["cost"]), usd(sp[m]["hybrid_rolling"]["cost"]), usd(sp[m]["reactive_u0.7"]["cost"]), pct(sp[m]["reactive_u0.7"]["unserved_pct"], 1), pct(max(sp[m]["hybrid_ML"]["unserved_pct"], sp[m]["hybrid_rolling"]["unserved_pct"]), 1)] for m in ("3", "4", "5")],
             [1.6, 2.7, 2.9, 3.0, 3.2, 2.6], "Simulated spike results (monthly cost, test)")
     d.figure(FIG / "spike.png", 14.5, "Effect of an unseen spike on cost and unserved load")
-    d.para(f"The hybrids serve all load in every case; the cost of a x5 spike is {k(sp['5']['hybrid_rolling']['cost'] - T['6_hybrid_rolling']['cost'])} (rolling) to {k(sp['5']['hybrid_ML']['cost'] - T['7_hybrid_ML']['cost'])} (ML) per month above the no-spike case. The ML forecaster reacts worse than the rolling quantile after a spike (x5: {k(sp['5']['hybrid_ML']['cost'])} against {k(sp['5']['hybrid_rolling']['cost'])}), because its features also include the spiked hour and it over-raises the next base. A production system would clip forecasts that follow a detected anomaly. The reactive controller is unaffected in kind but still drops about {sp['4']['reactive_u0.7']['unserved_pct']:.1f}% of load in every case. Live arm D repeats this test on AWS (Section 8.8).")
+    d.para(f"The hybrids serve all load in every case; the cost of a x5 spike is {k(sp['5']['hybrid_rolling']['cost'] - T['6_hybrid_rolling']['cost'])} (rolling) to {k(sp['5']['hybrid_ML']['cost'] - T['7_hybrid_ML']['cost'])} (ML) per month above the no-spike case. The ML forecaster reacts worse than the rolling quantile after a spike (x5: {k(sp['5']['hybrid_ML']['cost'])} against {k(sp['5']['hybrid_rolling']['cost'])}), because its features also include the spiked hour and it over-raises the next base. A production system would clip forecasts that follow a detected anomaly. The reactive controller is unaffected in kind but still drops about {sp['4']['reactive_u0.7']['unserved_pct']:.1f}% of load in every case. Live arm D repeats this test on AWS (Section 8.8): there too nothing failed, but about " + f"{100*LIVE['D_ml_spike']['slo_violation_share']:.0f}% of requests exceeded the latency target, a cost the simulator does not model." if LIVE else "Live arm D repeats this test on AWS (Section 8.8).")
     d.para("**Remaining risks.** The newsvendor argument assumes the forecast quantile is calibrated. Coverage at the median is not (Table 7), so a forecaster used at low q* (cheap containers relative to Lambda) would be miscalibrated where it matters most. A sustained level shift larger than the lookback window would be absorbed by Lambda for several hours at higher cost before the base catches up, and a fully new function with no history has no forecast at all and must start on Lambda.")
 
     # ------------------------------------------------ 10 limitations
@@ -256,7 +256,9 @@ def build(pagemap=None):
         "**Heavy-function filter.** Only 101 functions qualify; conclusions are about busy functions, not the median function, which is idle most of the day.",
         "**Forecaster scale.** The model trains on a small population (218k sampled rows); it is not tuned beyond a fixed configuration, and the benefit over rolling quantiles is within noise on test.",
         "**ALB leakage.** The load balancer splits by percentage, not overflow-only, and weight changes take about 12 s to propagate; the live system cannot match the simulator exactly (Section 8.8).",
-        "**Short live runs.** Each arm is a time-compressed six-hour window run once, from one laptop and one function; no confidence intervals can be given. Cold-start behaviour of Lambda depends on how long environments stayed warm between arms.",
+        "**Short live runs.** Each arm is a time-compressed six-hour window run once, from one laptop and one function; no confidence intervals can be given. Cold-start behaviour of Lambda depends on how long environments stayed warm between arms. The window is a smooth ramp, so it does not stress reactive scaling the way the simulated population does.",
+        "**Closed-loop load generator.** Locust users wait for each response, so when latency rises the offered load falls (arm D delivered about 63% of the planned rate in the spiked hour). Latency under overload is therefore understated.",
+        "**No capacity headroom.** The controller gives EC2 its full measured capacity; the spike arm shows this leaves no margin. A safety factor was not tested.",
         "**Energy** is an estimate from a published methodology, not a measurement, and is sensitive to the idle-power coefficient.",
         "**Not covered.** Storage, networking, multi-region operation, security, and AWS predictive scaling (not run live) are outside this work."]:
         d.bullet(t)
