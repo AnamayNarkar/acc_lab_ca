@@ -64,8 +64,11 @@ for _ in range(20):
     left = leftovers()
     if not left: break
     time.sleep(15)   # tagging index is eventually consistent
-direct = dict(asg=len(asg.describe_auto_scaling_groups()["AutoScalingGroups"]), alb=len(elb.describe_load_balancers()["LoadBalancers"]),
-              instances=sum(len(r["Instances"]) for r in ec2.describe_instances(Filters=[{"Name": "instance-state-name", "Values": ["pending", "running", "stopping", "stopped"]}])["Reservations"]))
+# scoped to CostScale resources only: the account is shared, other people's resources must not be counted or touched
+mine_asg = [g for g in asg.describe_auto_scaling_groups()["AutoScalingGroups"] if g["AutoScalingGroupName"].startswith("costscale")]
+mine_alb = [b for b in elb.describe_load_balancers()["LoadBalancers"] if b["LoadBalancerName"].startswith("costscale")]
+mine_ec2 = [i for r in ec2.describe_instances(Filters=[{"Name": "tag:project", "Values": ["costscale"]}, {"Name": "instance-state-name", "Values": ["pending", "running", "stopping", "stopped"]}])["Reservations"] for i in r["Instances"]]
+direct = dict(asg=len(mine_asg), alb=len(mine_alb), instances=len(mine_ec2))
 print("direct check (should be 0):", direct)
 if left or any(direct.values()): print("LEFTOVERS:", left); raise SystemExit(1)
 STATE.unlink(missing_ok=True)

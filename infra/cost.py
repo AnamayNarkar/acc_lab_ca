@@ -8,6 +8,6 @@ tot = 0
 for g in r["ResultsByTime"][0]["Groups"]:
     v = float(g["Metrics"]["UnblendedCost"]["Amount"]); tot += v
     if v: print(f"{g['Keys'][0]:45s} ${v:.4f}")
-print(f"TOTAL month-to-date (Cost Explorer, may lag): ${tot:.4f}")
+print(f"TOTAL month-to-date for the WHOLE account (Cost Explorer, may lag; includes anyone else using this account): ${tot:.4f}")
 s = load()
 if s.get("up_time"): print(f"stack up for {(time.time()-s['up_time'])/3600:.2f} h -> ALB ~ ${(time.time()-s['up_time'])/3600*0.0239:.3f} (+LCU)")

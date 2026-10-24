@@ -48,7 +48,7 @@ Splits are chronological per function: days 1-10 train, 11-12 validation, 13-14 
 
 ## 12. Why does the live system not match the simulator exactly?
 
-The simulator sends only the overflow to Lambda and assumes capacity is available instantly. The ALB splits by percentage, so with random arrivals some requests go to EC2 when it is full and some to Lambda when EC2 has room; instances take 29-31 s to become healthy (once 94 s); and a weight change takes about 12 s to apply. Section 8.8 of the report has the reconciliation table.
+The simulator sends only the overflow to Lambda and assumes capacity is available instantly. The ALB splits by percentage, so with random arrivals some requests go to EC2 when it is full and some to Lambda when EC2 has room; instances take 29-31 s to become healthy (once 94 s); and a weight change takes about 12 s to apply. In the live runs the Lambda share differed from the simulator replay by -14.1 to +0.7 percentage points and cost by -39% to +2% (hybrid arms), so the leak is real and measured, not assumed away. Section 8.8 of the report has the reconciliation table.
 
 ## 13. What about Lambda cold starts?
 
@@ -56,7 +56,7 @@ We measured them: with only Lambda-served responses, the median latency of cold 
 
 ## 14. What does the live demo cost, and how do you stop it running?
 
-The whole live phase (calibration and four arms) is on the order of a dollar or two of compute plus load-balancer hours, expected to be covered by the account's free credits (the Billing page showed $120 of credits at the start); the idle stack costs about $0.024 an hour for the load balancer. Safeguards: every resource is tagged project=costscale, budget alerts exist at $30, $60 and $80, nothing runs without an explicit approval, and `make down` destroys the stack and then checks the tagging API and the ASG, load balancer and instance counts directly. The budget alerts only warn; they do not stop spending.
+The whole live phase (calibration, four arms and rehearsals; the stack was up for about 3.4 hours) is roughly half a dollar by our own estimate (about 5 instance-hours at $0.0448, about 3.4 hours of load balancer at $0.0239, and about $0.08 of Lambda in the spike arm; AWS's own figure arrives about a day later), expected to be covered by the account's free credits (the Billing page showed $120 of credits at the start); the idle stack costs about $0.024 an hour for the load balancer. Safeguards: every resource is tagged project=costscale, budget alerts exist at $30, $60 and $80, nothing runs without an explicit approval, and `make down` destroys the stack and then checks the tagging API and the ASG, load balancer and instance counts directly. The budget alerts only warn; they do not stop spending.
 
 ## 15. What are the main limitations, in one answer?
 

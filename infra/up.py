@@ -100,7 +100,7 @@ if not asg.describe_auto_scaling_groups(AutoScalingGroupNames=[NAMES["asg"]])["A
 # --- dashboard
 def w(title, metric, x, y):
     return {"type": "metric", "x": x, "y": y, "width": 12, "height": 6, "properties": {"title": title, "region": REGION, "view": "timeSeries",
-        "metrics": [[{"expression": f"SEARCH('{{CostScale,Arm}} MetricName=\"{metric}\"', 'Average', 10)", "id": "e1"}]]}}
+        "metrics": [[{"expression": f"SEARCH('{{CostScale,Arm}} MetricName=\"{metric}\"', 'Average', 60)", "id": "e1"}]]}}
 dash = {"widgets": [w("Forecast (concurrency->rps)", "Forecast", 0, 0), w("Actual request rate (rps)", "Actual", 12, 0),
                     w("BaseCapacity (rps)", "BaseCapacity", 0, 6), w("ALB EC2 weight", "Weight", 12, 6), w("RunningCost ($)", "RunningCost", 0, 12),
     {"type": "metric", "x": 12, "y": 12, "width": 12, "height": 6, "properties": {"title": "ASG in-service instances", "region": REGION,
