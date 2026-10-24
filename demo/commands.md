@@ -1,4 +1,4 @@
-# Commands during recording (run from the repo root)
+# Commands
 
 ```
 .venv/bin/python demo/show_results.py sim
