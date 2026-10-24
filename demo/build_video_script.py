@@ -41,7 +41,7 @@ Do these in order. Each one depends on the one above it.
 | Step | Command | Why it is needed | What depends on it |
 |---|---|---|---|
 | 1 | `make up` | Creates the load balancer, Lambda and an empty server group on AWS (1 to 2 minutes). Costs about $0.024 per hour while it exists. | Everything in segment 6 and `make down`. |
-| 2 | `. infra/env.sh && .venv/bin/python infra/set_ip.py` | Your laptop's public address changes on mobile networks; this lets the load balancer accept you. Without it the requests time out. | The `curl` and the controller run in segment 6. |
+| 2 | `. infra/env.sh && .venv/bin/python infra/set_ip.py` | Allows your laptop's address through the load balancer (the demo scripts also redo this by themselves each time, because the address changes on mobile networks). | Nothing strictly; it is a safety step. |
 | 3 | `demo/preflight.sh` | Checks credentials, region and access. It must print `PREFLIGHT PASSED`. | Nothing; it only tells you steps 1 and 2 worked. If it fails, fix that before recording. |
 | 4 | Open the browser at AWS CloudWatch, Dashboards, `CostScale`, region ap-south-1, time range last 3 hours. | You will switch to it in segment 6. | Segment 6 only. |
 
@@ -59,8 +59,8 @@ Do these in order. Each one depends on the one above it.
 |---|---|
 | `show_results.py sim` and `show_results.py live` (segments 5 and 6) | Nothing. Offline. Works any time. |
 | `demo/preflight.sh` (segment 6) | Steps 1 and 2 above. |
-| `curl ...` (segment 6) | Steps 1 and 2 above. |
-| `run_experiments.py C` (segment 6) | Steps 1 and 2 above. Do it after the curl. |
+| `demo/curl.sh` (segment 6) | Step 1 only. |
+| `demo/controller.sh` (segment 6) | Step 1 only. Do it after `demo/curl.sh`. |
 | `make down` (segment 9) | Step 1 (something must exist to delete). Do it last. |
 """ 
 md += seg(1, "Introduction", "0:00 to 0:30", "Slide 1 (title).",
@@ -105,24 +105,24 @@ demo/preflight.sh
 **IF IT FAILS:** say "I will show the recorded results instead", go to 6f, and skip 6c to 6e.
 
 ### 6c. One request (20 seconds)
-**RUN (paste exactly, it is one command):**
+**RUN:**
 ```
-curl "http://$(.venv/bin/python -c "import json;print(json.load(open('results/cache/infra_state.json'))['alb_dns'])")/work?ms=400&cpu=80"
+demo/curl.sh
 ```
 **YOU WILL SEE:** `{{"backend": "lambda", "took_ms": 400.1}}`. The number is about 400. The very first call can take about a second because of a Lambda cold start.
 
 **SAY (read this aloud):**
 
 """ + say("There are no servers running yet. So the load balancer sent this request to Lambda, and the reply tells us which backend served it.") + f"""
-**IF IT FAILS (times out):** run `. infra/env.sh && .venv/bin/python infra/set_ip.py` and try again. Your network address changed.
+**IF IT FAILS:** run the same command again. The script loads the credentials and allows your current network address by itself each time.
 
 ### 6d. The controller at work (about 2 minutes, do NOT wait for it to finish before talking)
 **RUN:**
 ```
-LIVE_OUTDIR=results/live_demo INTERVAL_OVERRIDE=20 .venv/bin/python controller/run_experiments.py C
+demo/controller.sh
 ```
 **YOU WILL SEE (in this order):** `decision interval (s per trace hour): 20.0 -> arm length 2.0 min`, then `RUN C_ml`, then lines like `[C_ml] hour 0: base 8.5 rps -> desired 1`, `hour 1`, `hour 2`, `hour 3`. Later a Locust table with about 1,250 requests and 0 failures.
-**This command only writes into `results/live_demo`, so it cannot overwrite the saved results.**
+**This script only writes into `results/live_demo`, so it cannot overwrite the saved results. It loads the credentials itself, so it works in any terminal.**
 
 **SAY while it runs (read this aloud):**
 
@@ -169,7 +169,7 @@ md += "\n**SAY after the `DOWN:` line appears (read this aloud):**\n\n" + say("E
 |---|---|
 | Any AWS command fails | Say "I will show the recorded results instead", show slide 9, run only `.venv/bin/python demo/show_results.py live`. |
 | `explicit deny in a service control policy` | The organization policy must allow `ap-south-1`. See `demo/RUNBOOK.md`, section 5. |
-| Requests time out | `. infra/env.sh && .venv/bin/python infra/set_ip.py`, then try again. |
+| `demo/curl.sh` or `demo/controller.sh` fails | Run it again; if it says `No CostScale stack found`, run `make up` first. |
 | Dashboard is empty | Set the time range to the last 3 hours and wait a minute. |
 | You are running out of time | Skip 6b and 6e. Keep 6c, 6d and 6f. |
 """
