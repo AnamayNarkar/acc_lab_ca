@@ -46,3 +46,21 @@ def healthy_count():
 
 def set_desired(n):
     c("autoscaling").set_desired_capacity(AutoScalingGroupName=NAMES["asg"], DesiredCapacity=int(n), HonorCooldown=False)
+
+# ---- keep the ALB security group pointed at the laptop's CURRENT public IP (mobile network IP changes); adds exact /32s only
+def ensure_ip():
+    try:
+        ip = requests.get("https://checkip.amazonaws.com", timeout=5).text.strip(); cidr = ip + "/32"
+        s = load(); ec2 = c("ec2")
+        cur = ec2.describe_security_groups(GroupIds=[s["sg_alb"]])["SecurityGroups"][0]["IpPermissions"]
+        if cidr not in [r["CidrIp"] for p in cur for r in p.get("IpRanges", [])]:
+            ec2.authorize_security_group_ingress(GroupId=s["sg_alb"], IpPermissions=[{"IpProtocol": "tcp", "FromPort": 80, "ToPort": 80,
+                "IpRanges": [{"CidrIp": cidr, "Description": "laptop (auto-added)"}]}])
+            print("[ip-watchdog] added", cidr, flush=True); time.sleep(8)
+    except Exception as e: print("[ip-watchdog]", type(e).__name__, str(e)[:80], flush=True)
+
+def start_ip_watchdog(period=10):
+    ensure_ip()
+    def loop():
+        while True: time.sleep(period); ensure_ip()
+    threading.Thread(target=loop, daemon=True).start()

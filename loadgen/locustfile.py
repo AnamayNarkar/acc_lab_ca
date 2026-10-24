@@ -10,6 +10,7 @@ from controller import Controller
 
 ARM = os.environ["ARM"]; INTERVAL_S = float(os.environ["INTERVAL_S"]); OUTDIR = os.environ["OUTDIR"]
 CAL = json.load(open(ROOT / "results/calibration.json"))
+lg.start_ip_watchdog()
 CTL = Controller(ARM, INTERVAL_S, OUTDIR, CAL)
 REQS = []; LAM_COUNT = [0]; TARGET = [0.0]; NUSERS = [1]
 TOTAL_S = INTERVAL_S * 6

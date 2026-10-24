@@ -8,8 +8,10 @@ import lgcommon as lg
 from awscommon import c, NAMES
 ARMS = {"A": "A_reactive", "B": "B_static", "C": "C_ml", "D": "D_ml_spike"}
 cal = json.load(open(ROOT / "results/calibration.json"))
-interval = max(4 * max(cal["launch_to_healthy_s"]), 240.0)          # decision interval >= 4x measured launch time
+worst_launch = max(cal["launch_to_healthy_s"] + [cal.get("launch_to_healthy_s_first_ever_launch_earlier_run", 0)])
+interval = 4 * worst_launch                                         # decision interval >= 4x worst measured launch time
 interval = min(interval, 400.0)                                    # arm <= 40 min (6 intervals)
+if os.environ.get("INTERVAL_OVERRIDE"): interval = float(os.environ["INTERVAL_OVERRIDE"])   # smoke tests only
 print("decision interval (s per trace hour):", interval, "-> arm length", 6 * interval / 60, "min")
 sel = [a for a in (sys.argv[1:] or list(ARMS))]
 asg = c("autoscaling")

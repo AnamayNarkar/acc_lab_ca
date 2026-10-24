@@ -1,0 +1,70 @@
+{
+ "service_ms": 400,
+ "cpu_ms": 80,
+ "region": "ap-south-1",
+ "started": "2026-10-24 19:09:13",
+ "launch_to_healthy_s": [
+  28.549663543701172,
+  31.35863423347473
+ ],
+ "capacity_steps": [
+  {
+   "rps": 4,
+   "p50": 480.9856414794922,
+   "p95": 542.708945274353,
+   "p99": 576.6256999969482,
+   "error_rate": 0.0
+  },
+  {
+   "rps": 8,
+   "p50": 437.06440925598145,
+   "p95": 501.23091936111445,
+   "p99": 519.0210247039795,
+   "error_rate": 0.0
+  },
+  {
+   "rps": 12,
+   "p50": 431.12075328826904,
+   "p95": 480.45923709869385,
+   "p99": 599.6843028068541,
+   "error_rate": 0.0
+  },
+  {
+   "rps": 16,
+   "p50": 441.03872776031494,
+   "p95": 479.60829734802246,
+   "p99": 487.66207695007324,
+   "error_rate": 0.0
+  },
+  {
+   "rps": 20,
+   "p50": 5305.751085281372,
+   "p95": 9048.29773902893,
+   "p99": 9897.17625617981,
+   "error_rate": 0.15416666666666667
+  }
+ ],
+ "p95_target_ms": 800,
+ "sustainable_rps_per_instance": 16,
+ "capacity_units": {
+  "ec2": 6.4
+ },
+ "weight_propagation_s": [
+  12.113219499588013,
+  12.920077562332153,
+  11.763111352920532
+ ],
+ "lambda_cold_warm_v2": {
+  "cold_n": 24,
+  "warm_n": 48,
+  "cold_median": 814.3305778503418,
+  "cold_p95": 1084.6492052078247,
+  "cold_max": 1448.5859870910645,
+  "warm_median": 609.6808910369873,
+  "warm_p95": 867.8670763969421,
+  "non_lambda_dropped": 0,
+  "cold_overhead_ms_median": 204.6496868133545
+ },
+ "note_step3": "first calibration run measured cold/warm before ALB weights propagated (~12 s) so mixed in EC2 responses; replaced by lambda_cold_warm_v2",
+ "launch_to_healthy_s_first_ever_launch_earlier_run": 93.83
+}

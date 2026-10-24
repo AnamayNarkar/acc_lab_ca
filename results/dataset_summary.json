@@ -18,13 +18,13 @@
   },
   "selection_rule": "present on all 14 days AND total invocations / (14*1440 min) >= 5",
   "memory_days_available": 12,
-  "heavy_functions": 94,
+  "heavy_functions": 101,
   "heavy_by_trigger": {
-    "event": 17,
+    "event": 20,
     "http": 16,
     "orchestration": 8,
     "others": 0,
-    "queue": 48,
+    "queue": 52,
     "storage": 5,
     "timer": 0
   },

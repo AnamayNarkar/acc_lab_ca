@@ -81,7 +81,7 @@ class Controller:
         if self.arm == "A_reactive": ew, lw, share = 999, 0, 1.0
         else:
             cap_now = healthy * self.cap
-            share = 1.0 if observed <= 0 else min(1.0, cap_now / observed)
+            share = (1.0 if cap_now > 0 else 0.0) if observed <= 0 else min(1.0, cap_now / observed)
             ew = int(round(999 * share)); lw = 999 - ew
             if ew == 0 and lw == 0: lw = 1
             lg.set_weights(ew, lw)

@@ -1,6 +1,6 @@
 {
- "brute_force_cost_test_period": 1002.2592440036977,
- "qstar_rule_cost_test_period": 1002.3468350426601,
- "relative_gap_pct": 0.008739359550577882,
+ "brute_force_cost_test_period": 2031.8880438533463,
+ "qstar_rule_cost_test_period": 2031.8615273633698,
+ "relative_gap_pct": -0.001305017274782656,
  "note": "grid of 401 candidates per app-hour; rule gap is discretisation (60 samples/hour) not theory error"
 }

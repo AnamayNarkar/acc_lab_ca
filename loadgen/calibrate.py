@@ -4,11 +4,16 @@
 import json, time, statistics as st
 import numpy as np
 from lgcommon import *
+start_ip_watchdog()
 lam = c("lambda"); out = {"service_ms": SERVICE_MS, "cpu_ms": CPU_MS, "region": REGION, "started": time.strftime("%Y-%m-%d %H:%M:%S")}
 u = url()
 def pct(xs, p): return float(np.percentile(xs, p)) if len(xs) else float("nan")
 
-# 1 launch time
+# 1 launch time (start from an empty ASG so the first trial is a true cold launch)
+def drain():
+    set_desired(0); t1 = time.time()
+    while c("autoscaling").describe_auto_scaling_groups(AutoScalingGroupNames=[NAMES["asg"]])["AutoScalingGroups"][0]["Instances"] and time.time() - t1 < 300: time.sleep(5)
+drain(); time.sleep(10)
 launch = []
 for trial in range(2):
     set_weights(0, 999); set_desired(1); t0 = time.time()
@@ -39,7 +44,7 @@ out["capacity_units"] = {"ec2": sus * SERVICE_MS / 1000.0}   # concurrent reques
 
 # 3 lambda cold vs warm
 set_weights(0, 999)
-lam.update_function_configuration(FunctionName=NAMES["fn"], Environment={"Variables": {"V": str(time.time())}})
+lam.update_function_configuration(FunctionName=NAMES["fn"], Environment={"Variables": {"VER": str(time.time())}})
 lam.get_waiter("function_updated_v2").wait(FunctionName=NAMES["fn"]); time.sleep(3)
 cold, warm = [], []
 with ThreadPoolExecutor(16) as pool:

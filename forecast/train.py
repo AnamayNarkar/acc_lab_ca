@@ -131,4 +131,4 @@ print(json.dumps({k: out[k] for k in ("margin_chosen", "margin_val_cost_monthly"
 for m in ("lightgbm", "rolling6h", "persistence", "seasonal_naive", "static_train"):
     print(m, {q: (round(v["pinball_norm"], 4), round(v["coverage"], 3)) for q, v in acc[m]["test"].items()})
 import pickle
-pickle.dump({"models": models, "apps": M.func.tolist(), "level": level, "trigger": trig, "idx": idx}, open(ROOT / "results/cache/forecaster.pkl", "wb"))
+if not (ROOT / "results/cache/forecaster.pkl").exists(): pickle.dump({"models": models, "apps": M.func.tolist(), "level": level, "trigger": trig, "idx": idx}, open(ROOT / "results/cache/forecaster.pkl", "wb"))
