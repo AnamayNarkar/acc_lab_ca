@@ -14,3 +14,6 @@ Log of choices made without asking. Newest last.
 - D2.5 Seasonal strategy (4): capacity = mean of previous-3-days same-hour max / u. Labeled emulation.
 - D2.6 Test-period numbers were printed in the same script run as validation; the script was rerun once after a zero-duration clamp fix (no tuning). No hyperparameter was chosen on test.
 - D2.7 Newsvendor brute-force check (results/newsvendor_check.json): rule within 0.009% of grid search per app-hour (user observed 0.5%).
+- D3.1 Forecaster: 6 LightGBM quantile models (alpha=q) trained on per-minute values (10 sampled minutes/hour), train days 2-10, train-only fit; normalized by app train mean; quantiles interpolated to q* (anchor 0→0); safety margin chosen on validation by decision cost (=1.0). Population: 94 heavy non-timer functions (trigger as categorical feature).
+- D3.2 Result: ML beats rolling-6h by ~4% decision cost on test (headroom to oracle ~11.6%). Persistence has better median pinball than LightGBM; LightGBM better on upper quantiles and coverage. Reported plainly.
+- D4.0 BLOCKER: org SCP (o-bn2xfz421p) explicitly denies ec2/elbv2/lambda/ssm read calls in ap-south-1 for the admin user. Phase 4 paused; user asked.
