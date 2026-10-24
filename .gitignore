@@ -1,0 +1,15 @@
+.env
+.env.*
+data/
+results/cache/
+results/*.parquet
+results/*.npy
+results/*.pkl
+.venv/
+__pycache__/
+*.pyc
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+*.tar.xz
