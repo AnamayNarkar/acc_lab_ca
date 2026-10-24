@@ -1,0 +1,23 @@
+{
+ "idx": 643,
+ "func": "520799b468acf438a7c04e7c3cbedf938019510ab09bae62d81e485e038c7f40|7ee29a32f82b359d01d9a7e8e7564418a03b914e06252552e90cafbd9ae5054e|d21f486f9a6eb452742e90b167689d3c9bfdabcba2dc0943df4097161201a023",
+ "trigger": "http",
+ "avg_duration_ms": 2532.939033815122,
+ "app_memory_mb": 221.25178164949497,
+ "daily_profile_corr": 0.9081391373581561,
+ "minute_cv": 0.21068213880062103,
+ "window_start_hour_abs": 315,
+ "window_hours": 6,
+ "trace_peak_rps": 4.1,
+ "scale_factor": 6.829268292682928,
+ "live_peak_rps": 28.0,
+ "hourly_mean_rps_window": [
+  3.1262872628726286,
+  4.911382113821138,
+  8.100271002710027,
+  12.628455284552846,
+  16.356097560975606,
+  18.046341463414635
+ ],
+ "why": "highest day-to-day hourly-profile correlation among heavy HTTP functions with moderate minute CV (0.1-0.6); window chosen with largest max/min hourly ratio on day 14"
+}
