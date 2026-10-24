@@ -9,24 +9,25 @@ Only the segments marked LIVE need AWS. All the others are slides or offline com
 - Segment 6 is the only live part (about 2.5 minutes). It talks to AWS in Mumbai.
 - The big experiment (about 2.8 hours) was done earlier. You do **not** repeat it. You show its saved results and say so out loud.
 
-## Before you start recording (do this first, NOT on camera, about 5 minutes)
-Do these in order. Each one depends on the one above it.
+## Before you start recording
+**Current state: the stack is ALREADY UP and verified (no servers running, all traffic to Lambda). You can skip steps 1 and 2. Only do step 3.**
+Run steps 1 and 2 only if `demo/preflight.sh` shows `load balancers=0` (that means `make down` was run since).
 
 | Step | Command | Why it is needed | What depends on it |
 |---|---|---|---|
-| 1 | `make up` | Creates the load balancer, Lambda and an empty server group on AWS (1 to 2 minutes). Costs about $0.024 per hour while it exists. | Everything in segment 6 and `make down`. |
-| 2 | `. infra/env.sh && .venv/bin/python infra/set_ip.py` | Allows your laptop's address through the load balancer (the demo scripts also redo this by themselves each time, because the address changes on mobile networks). | Nothing strictly; it is a safety step. |
+| 1 | `make up` (ONLY if the stack is not up) | Creates the load balancer, Lambda and an empty server group on AWS (1 to 2 minutes). Costs about $0.024 per hour while it exists. | Everything in segment 6 and `make down`. |
+| 2 | `. infra/env.sh && .venv/bin/python infra/set_ip.py` (optional) | Allows your laptop's address through the load balancer (the demo scripts also redo this by themselves each time, because the address changes on mobile networks). | Nothing strictly; it is a safety step. |
 | 3 | `demo/preflight.sh` | Checks credentials, region and access. It must print `PREFLIGHT PASSED`. | Nothing; it only tells you steps 1 and 2 worked. If it fails, fix that before recording. |
 | 4 | Open the browser at AWS CloudWatch, Dashboards, `CostScale`, region ap-south-1, time range last 3 hours. | You will switch to it in segment 6. | Segment 6 only. |
 
 **Slides:** open `ppt/CostScale.pptx` full screen. **Terminal:** one window, big font, in the repository root.
 
 ## When to start and stop recording
-- **START recording after step 4 is done** (stack is up and preflight passed). Do not record the waiting.
+- **START recording once the stack is up and `demo/preflight.sh` has passed** (and the dashboard tab is open). Do not record the waiting.
 - **Do not wait for slow commands to finish before talking.** Start the command, then read the SAY block while it runs.
 - **Segment 6 controller run:** it takes about 2 minutes of traffic, then waits 90 more seconds. When the table with `Aggregated` appears, press **Ctrl+C**. That is enough; `make down` cleans up.
 - **Segment 9 `make down`:** start it, then read the closing lines while it runs (it takes a few minutes). **STOP recording when you see the line starting `DOWN:`.** If you do not want to wait, stop recording right after you read the closing lines, then let `make down` finish off camera.
-- If you mess up a segment, pause, and redo only that segment. Segments are independent, so you can cut and join them.
+- Record in one take. If a command fails, use that segment's **IF IT FAILS** line and keep going.
 
 ## Which commands depend on earlier ones (during recording)
 | Command in the video | Needs |
