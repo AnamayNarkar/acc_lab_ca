@@ -31,7 +31,7 @@ def build(pagemap=None):
     d.para("", after=30)
     d.para("B.Tech Computer Engineering, Final Year", "c", after=4, spacing=1.15); d.para("K.J. Somaiya School of Engineering, Mumbai", "c", after=4, spacing=1.15)
     d.para("[TO FILL: course name] (cloud computing project)", "c", after=4, spacing=1.15); d.para("October 2026", "c", after=30, spacing=1.15)
-    d.para("Repository: [TO FILL]", "c", size=11, spacing=1.15)
+    d.para("Repository: github.com/AnamayNarkar/acc_lab_ca", "c", size=11, spacing=1.15)
     # ------------------------------------------------ abstract
     d.h1("Abstract", center=True)
     for t in live_text.abstract(DS, SIM, FC, CAL, LIVE, T, N_POP, CAPU): d.para(t)
