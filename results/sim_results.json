@@ -1,0 +1,890 @@
+{
+ "population": 94,
+ "capacity_units": {
+  "ec2": 16.0,
+  "fargate": 4.0
+ },
+ "prices": {
+  "lambda_gbs": 1.66667e-05,
+  "lambda_req": 2e-07,
+  "t3_medium_h": 0.0448,
+  "fargate_vcpu_h": 0.04256,
+  "fargate_gb_h": 0.004655
+ },
+ "ec2": {
+  "val": {
+   "1_all_lambda": {
+    "cost": 55045.899867699874,
+    "cost_container": 0.0,
+    "cost_lambda": 55045.899867699874,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1066371.5937077205
+   },
+   "2_peak_x1.2": {
+    "cost": 348903.515625,
+    "cost_container": 348903.515625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.4183795750141144,
+    "util": 0.030235260725021362,
+    "lambda_share": 0.0,
+    "energy_wh": 12826087.5
+   },
+   "3_reactive_u0.7": {
+    "cost": 15129.047241210938,
+    "cost_container": 15129.047241210938,
+    "cost_lambda": 0.0,
+    "unserved_pct": 11.080038070678711,
+    "util": 0.6226264834403992,
+    "lambda_share": 0.0,
+    "energy_wh": 1660446.09375
+   },
+   "4_seasonal_u0.7": {
+    "cost": 43475.460205078125,
+    "cost_container": 43475.460205078125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 2.0741610527038574,
+    "util": 0.23861239850521088,
+    "lambda_share": 0.0,
+    "energy_wh": 2714441.484375
+   },
+   "3_reactive_u0.5": {
+    "cost": 21180.66650390625,
+    "cost_container": 21180.66650390625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 9.608002662658691,
+    "util": 0.45209556818008423,
+    "lambda_share": 0.0,
+    "energy_wh": 1879579.6875
+   },
+   "4_seasonal_u0.5": {
+    "cost": 60865.645751953125,
+    "cost_container": 60865.645751953125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 1.4822438955307007,
+    "util": 0.1714676469564438,
+    "lambda_share": 0.0,
+    "energy_wh": 3296664.609375
+   },
+   "3_reactive_u0.3": {
+    "cost": 35301.1083984375,
+    "cost_container": 35301.1083984375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 8.422018051147461,
+    "util": 0.2748163640499115,
+    "lambda_share": 0.0,
+    "energy_wh": 2361539.0625
+   },
+   "4_seasonal_u0.3": {
+    "cost": 101442.73681640625,
+    "cost_container": 101442.73681640625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 1.070366621017456,
+    "util": 0.1033107116818428,
+    "lambda_share": 0.0,
+    "energy_wh": 4642533.75
+   },
+   "3_reactive_u0.2": {
+    "cost": 52951.66259765625,
+    "cost_container": 52951.66259765625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 7.79353141784668,
+    "util": 0.18446828424930573,
+    "lambda_share": 0.0,
+    "energy_wh": 2952840.9375
+   },
+   "4_seasonal_u0.2": {
+    "cost": 152164.1162109375,
+    "cost_container": 152164.1162109375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.920461893081665,
+    "util": 0.06897816807031631,
+    "lambda_share": 0.0,
+    "energy_wh": 6320107.5
+   },
+   "3_reactive_u0.1": {
+    "cost": 105903.3251953125,
+    "cost_container": 105903.3251953125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 7.012616157531738,
+    "util": 0.09301529079675674,
+    "lambda_share": 0.0,
+    "energy_wh": 4712330.15625
+   },
+   "4_seasonal_u0.1": {
+    "cost": 304328.232421875,
+    "cost_container": 304328.232421875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.6749957799911499,
+    "util": 0.03457453101873398,
+    "lambda_share": 0.0,
+    "energy_wh": 11350161.5625
+   },
+   "5_hybrid_static": {
+    "cost": 19795.38363569379,
+    "cost_container": 13361.729753476744,
+    "cost_lambda": 6433.653882217046,
+    "unserved_pct": 0.0,
+    "util": 0.677113137036656,
+    "lambda_share": 0.14594857874688852,
+    "energy_wh": 1682087.0634320132
+   },
+   "6_hybrid_rolling": {
+    "cost": 18613.771763055047,
+    "cost_container": 12414.075375383838,
+    "cost_lambda": 6199.696387671212,
+    "unserved_pct": 0.0,
+    "util": 0.7357270899244942,
+    "lambda_share": 0.13783334550696813,
+    "energy_wh": 1656936.1049591622
+   },
+   "8_hybrid_oracle": {
+    "cost": 16172.50934327056,
+    "cost_container": 12384.49684408514,
+    "cost_lambda": 3788.01249918542,
+    "unserved_pct": 0.0,
+    "util": 0.7783111204640037,
+    "lambda_share": 0.09010411421979661,
+    "energy_wh": 1671060.9599645126
+   }
+  },
+  "test": {
+   "1_all_lambda": {
+    "cost": 53825.63064164968,
+    "cost_container": 0.0,
+    "cost_lambda": 53825.63064164968,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1028649.2749052244
+   },
+   "2_peak_x1.2": {
+    "cost": 348903.515625,
+    "cost_container": 348903.515625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.4891114830970764,
+    "util": 0.029677864164114,
+    "lambda_share": 0.0,
+    "energy_wh": 12802125.0
+   },
+   "3_reactive_u0.7": {
+    "cost": 14870.603942871094,
+    "cost_container": 14870.603942871094,
+    "cost_lambda": 0.0,
+    "unserved_pct": 9.231301307678223,
+    "util": 0.6351479291915894,
+    "lambda_share": 0.0,
+    "energy_wh": 1655023.9453125
+   },
+   "4_seasonal_u0.7": {
+    "cost": 41567.2998046875,
+    "cost_container": 41567.2998046875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 4.1023077964782715,
+    "util": 0.2400621771812439,
+    "lambda_share": 0.0,
+    "energy_wh": 2602728.515625
+   },
+   "3_reactive_u0.5": {
+    "cost": 20818.846435546875,
+    "cost_container": 20818.846435546875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 7.9554443359375,
+    "util": 0.4600540101528168,
+    "lambda_share": 0.0,
+    "energy_wh": 1867886.3671875
+   },
+   "4_seasonal_u0.5": {
+    "cost": 58194.217529296875,
+    "cost_container": 58194.217529296875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 2.0617408752441406,
+    "util": 0.17512169480323792,
+    "lambda_share": 0.0,
+    "energy_wh": 3178172.578125
+   },
+   "3_reactive_u0.3": {
+    "cost": 34698.076171875,
+    "cost_container": 34698.076171875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.843822956085205,
+    "util": 0.27936607599258423,
+    "lambda_share": 0.0,
+    "energy_wh": 2340649.21875
+   },
+   "4_seasonal_u0.3": {
+    "cost": 96990.3662109375,
+    "cost_container": 96990.3662109375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.7667176127433777,
+    "util": 0.10646237432956696,
+    "lambda_share": 0.0,
+    "energy_wh": 4476435.0
+   },
+   "3_reactive_u0.2": {
+    "cost": 52047.1142578125,
+    "cost_container": 52047.1142578125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.299363136291504,
+    "util": 0.18733257055282593,
+    "lambda_share": 0.0,
+    "energy_wh": 2920767.1875
+   },
+   "4_seasonal_u0.2": {
+    "cost": 145485.5419921875,
+    "cost_container": 145485.5419921875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.4935465157032013,
+    "util": 0.07117030024528503,
+    "lambda_share": 0.0,
+    "energy_wh": 6082010.15625
+   },
+   "3_reactive_u0.1": {
+    "cost": 104094.228515625,
+    "cost_container": 104094.228515625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 5.708989143371582,
+    "util": 0.0942564457654953,
+    "lambda_share": 0.0,
+    "energy_wh": 4647750.0
+   },
+   "4_seasonal_u0.1": {
+    "cost": 290971.083984375,
+    "cost_container": 290971.083984375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.3078710436820984,
+    "util": 0.0356515534222126,
+    "lambda_share": 0.0,
+    "energy_wh": 10890609.375
+   },
+   "5_hybrid_static": {
+    "cost": 20694.312976326717,
+    "cost_container": 13361.729753476744,
+    "cost_lambda": 7332.583222849972,
+    "unserved_pct": 0.0,
+    "util": 0.6505537384194249,
+    "lambda_share": 0.16463078505408718,
+    "energy_wh": 1643677.3696652693
+   },
+   "6_hybrid_rolling": {
+    "cost": 17017.348135124663,
+    "cost_container": 12264.021948204978,
+    "cost_lambda": 4753.326186919688,
+    "unserved_pct": 0.0,
+    "util": 0.7579877677261541,
+    "lambda_share": 0.10663749242002266,
+    "energy_wh": 1643366.5194250103
+   },
+   "8_hybrid_oracle": {
+    "cost": 15035.2025256399,
+    "cost_container": 11929.528498729685,
+    "cost_lambda": 3105.6740269102133,
+    "unserved_pct": 0.0,
+    "util": 0.806311453174259,
+    "lambda_share": 0.07560260341730003,
+    "energy_wh": 1640137.4044490678
+   }
+  }
+ },
+ "fargate": {
+  "val": {
+   "1_all_lambda": {
+    "cost": 55045.899867699874,
+    "cost_container": 0.0,
+    "cost_lambda": 55045.899867699874,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1066371.5937077205
+   },
+   "2_peak_x1.2": {
+    "cost": 807929.70703125,
+    "cost_container": 807929.70703125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.4183795750141144,
+    "util": 0.030235260725021362,
+    "lambda_share": 0.0,
+    "energy_wh": 12826087.5
+   },
+   "3_reactive_u0.7": {
+    "cost": 35033.199462890625,
+    "cost_container": 35033.199462890625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 11.080038070678711,
+    "util": 0.6226264834403992,
+    "lambda_share": 0.0,
+    "energy_wh": 1660446.09375
+   },
+   "4_seasonal_u0.7": {
+    "cost": 100672.8662109375,
+    "cost_container": 100672.8662109375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 2.0741610527038574,
+    "util": 0.23861239850521088,
+    "lambda_share": 0.0,
+    "energy_wh": 2714441.484375
+   },
+   "3_reactive_u0.5": {
+    "cost": 49046.480712890625,
+    "cost_container": 49046.480712890625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 9.608002662658691,
+    "util": 0.45209556818008423,
+    "lambda_share": 0.0,
+    "energy_wh": 1879579.6875
+   },
+   "4_seasonal_u0.5": {
+    "cost": 140942.0068359375,
+    "cost_container": 140942.0068359375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 1.4822438955307007,
+    "util": 0.1714676469564438,
+    "lambda_share": 0.0,
+    "energy_wh": 3296664.609375
+   },
+   "3_reactive_u0.3": {
+    "cost": 81744.13330078125,
+    "cost_container": 81744.13330078125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 8.422018051147461,
+    "util": 0.2748163640499115,
+    "lambda_share": 0.0,
+    "energy_wh": 2361539.0625
+   },
+   "4_seasonal_u0.3": {
+    "cost": 234903.33984375,
+    "cost_container": 234903.33984375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 1.070366621017456,
+    "util": 0.1033107116818428,
+    "lambda_share": 0.0,
+    "energy_wh": 4642533.75
+   },
+   "3_reactive_u0.2": {
+    "cost": 122616.1962890625,
+    "cost_container": 122616.1962890625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 7.79353141784668,
+    "util": 0.18446828424930573,
+    "lambda_share": 0.0,
+    "energy_wh": 2952840.9375
+   },
+   "4_seasonal_u0.2": {
+    "cost": 352355.009765625,
+    "cost_container": 352355.009765625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.920461893081665,
+    "util": 0.06897816807031631,
+    "lambda_share": 0.0,
+    "energy_wh": 6320107.5
+   },
+   "3_reactive_u0.1": {
+    "cost": 245232.392578125,
+    "cost_container": 245232.392578125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 7.012616157531738,
+    "util": 0.09301529079675674,
+    "lambda_share": 0.0,
+    "energy_wh": 4712330.15625
+   },
+   "4_seasonal_u0.1": {
+    "cost": 704710.01953125,
+    "cost_container": 704710.01953125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.6749957799911499,
+    "util": 0.03457453101873398,
+    "lambda_share": 0.0,
+    "energy_wh": 11350161.5625
+   },
+   "5_hybrid_static": {
+    "cost": 32893.396508945545,
+    "cost_container": 20573.125084411335,
+    "cost_lambda": 12320.271424534205,
+    "unserved_pct": 0.0,
+    "util": 0.8617982269084772,
+    "lambda_share": 0.2772339884618825,
+    "energy_wh": 1479057.783721751
+   },
+   "6_hybrid_rolling": {
+    "cost": 32036.650850407077,
+    "cost_container": 20647.478532208777,
+    "cost_lambda": 11389.172318198298,
+    "unserved_pct": 0.0,
+    "util": 0.8878281697169735,
+    "lambda_share": 0.2527123515378895,
+    "energy_wh": 1493922.0356006315
+   },
+   "8_hybrid_oracle": {
+    "cost": 29892.664559539346,
+    "cost_container": 21329.33259277512,
+    "cost_lambda": 8563.331966764224,
+    "unserved_pct": 0.0,
+    "util": 0.9204649762611611,
+    "lambda_share": 0.19965654424806537,
+    "energy_wh": 1518253.6216349183
+   }
+  },
+  "test": {
+   "1_all_lambda": {
+    "cost": 53825.63064164968,
+    "cost_container": 0.0,
+    "cost_lambda": 53825.63064164968,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1028649.2749052244
+   },
+   "2_peak_x1.2": {
+    "cost": 807929.70703125,
+    "cost_container": 807929.70703125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.4891114830970764,
+    "util": 0.029677864164114,
+    "lambda_share": 0.0,
+    "energy_wh": 12802125.0
+   },
+   "3_reactive_u0.7": {
+    "cost": 34434.7412109375,
+    "cost_container": 34434.7412109375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 9.231301307678223,
+    "util": 0.6351479291915894,
+    "lambda_share": 0.0,
+    "energy_wh": 1655023.9453125
+   },
+   "4_seasonal_u0.7": {
+    "cost": 96254.27490234375,
+    "cost_container": 96254.27490234375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 4.1023077964782715,
+    "util": 0.2400621771812439,
+    "lambda_share": 0.0,
+    "energy_wh": 2602728.515625
+   },
+   "3_reactive_u0.5": {
+    "cost": 48208.641357421875,
+    "cost_container": 48208.641357421875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 7.9554443359375,
+    "util": 0.4600540101528168,
+    "lambda_share": 0.0,
+    "energy_wh": 1867886.3671875
+   },
+   "4_seasonal_u0.5": {
+    "cost": 134755.9716796875,
+    "cost_container": 134755.9716796875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 2.0617408752441406,
+    "util": 0.17512169480323792,
+    "lambda_share": 0.0,
+    "energy_wh": 3178172.578125
+   },
+   "3_reactive_u0.3": {
+    "cost": 80347.734375,
+    "cost_container": 80347.734375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.843822956085205,
+    "util": 0.27936607599258423,
+    "lambda_share": 0.0,
+    "energy_wh": 2340649.21875
+   },
+   "4_seasonal_u0.3": {
+    "cost": 224593.3154296875,
+    "cost_container": 224593.3154296875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.7667176127433777,
+    "util": 0.10646237432956696,
+    "lambda_share": 0.0,
+    "energy_wh": 4476435.0
+   },
+   "3_reactive_u0.2": {
+    "cost": 120521.59423828125,
+    "cost_container": 120521.59423828125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.299363136291504,
+    "util": 0.18733257055282593,
+    "lambda_share": 0.0,
+    "energy_wh": 2920767.1875
+   },
+   "4_seasonal_u0.2": {
+    "cost": 336889.951171875,
+    "cost_container": 336889.951171875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.4935465157032013,
+    "util": 0.07117030024528503,
+    "lambda_share": 0.0,
+    "energy_wh": 6082010.15625
+   },
+   "3_reactive_u0.1": {
+    "cost": 241043.1884765625,
+    "cost_container": 241043.1884765625,
+    "cost_lambda": 0.0,
+    "unserved_pct": 5.708989143371582,
+    "util": 0.0942564457654953,
+    "lambda_share": 0.0,
+    "energy_wh": 4647750.0
+   },
+   "4_seasonal_u0.1": {
+    "cost": 673779.90234375,
+    "cost_container": 673779.90234375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 0.3078710436820984,
+    "util": 0.0356515534222126,
+    "lambda_share": 0.0,
+    "energy_wh": 10890609.375
+   },
+   "5_hybrid_static": {
+    "cost": 32623.953941915082,
+    "cost_container": 20573.125084411335,
+    "cost_lambda": 12050.828857503744,
+    "unserved_pct": 0.0,
+    "util": 0.8454558725411808,
+    "lambda_share": 0.27813566031740544,
+    "energy_wh": 1442985.3907340325
+   },
+   "6_hybrid_rolling": {
+    "cost": 30271.57529651422,
+    "cost_container": 21182.599256847065,
+    "cost_lambda": 9088.976039667155,
+    "unserved_pct": 0.0,
+    "util": 0.8985381426300612,
+    "lambda_share": 0.21008539465314732,
+    "energy_wh": 1493216.809796665
+   },
+   "8_hybrid_oracle": {
+    "cost": 28500.769302816145,
+    "cost_container": 21561.735197726564,
+    "cost_lambda": 6939.034105089579,
+    "unserved_pct": 0.0,
+    "util": 0.9293707845807574,
+    "lambda_share": 0.16835668584557067,
+    "energy_wh": 1510802.9047308273
+   }
+  }
+ },
+ "qstar_sweep_rolling_val_cost": {
+  "-0.2": 20023.527176461554,
+  "-0.1": 19175.695269979245,
+  "-0.05": 18789.731979395965,
+  "0": 18613.771763055047,
+  "0.05": 18771.370166724242,
+  "0.1": 19795.399938325023
+ },
+ "qstar_stats": {
+  "median": 0.7936008830099424,
+  "frac_zero": 0.0
+ },
+ "sensitivity_test": {
+  "cap_x0.5": {
+   "1_all_lambda": {
+    "cost": 53825.63064164968,
+    "cost_container": 0.0,
+    "cost_lambda": 53825.63064164968,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1028649.2749052244
+   },
+   "3_reactive_u0.3": {
+    "cost": 69396.15234375,
+    "cost_container": 69396.15234375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.843822956085205,
+    "util": 0.27936607599258423,
+    "lambda_share": 0.0,
+    "energy_wh": 2340649.21875
+   },
+   "5_hybrid_static": {
+    "cost": 30070.5518130952,
+    "cost_container": 19088.674890433605,
+    "cost_lambda": 10981.876922661597,
+    "unserved_pct": 0.0,
+    "util": 0.810483590608151,
+    "lambda_share": 0.2565998951195242,
+    "energy_wh": 1471456.3193252687
+   },
+   "6_hybrid_rolling": {
+    "cost": 27417.53395268947,
+    "cost_container": 19202.41213570934,
+    "cost_lambda": 8215.121816980134,
+    "unserved_pct": 0.0,
+    "util": 0.8750619132818321,
+    "lambda_share": 0.19258432088303334,
+    "energy_wh": 1513424.6735421377
+   },
+   "8_hybrid_oracle": {
+    "cost": 25506.295842934556,
+    "cost_container": 19309.271780089955,
+    "cost_lambda": 6197.024062844601,
+    "unserved_pct": 0.0,
+    "util": 0.912286981970945,
+    "lambda_share": 0.15355258443301176,
+    "energy_wh": 1526428.4565671524
+   }
+  },
+  "cap_x1.5": {
+   "1_all_lambda": {
+    "cost": 53825.63064164968,
+    "cost_container": 0.0,
+    "cost_lambda": 53825.63064164968,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1028649.2749052244
+   },
+   "3_reactive_u0.3": {
+    "cost": 23132.05078125,
+    "cost_container": 23132.05078125,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.843822956085205,
+    "util": 0.27936607599258423,
+    "lambda_share": 0.0,
+    "energy_wh": 2340649.21875
+   },
+   "5_hybrid_static": {
+    "cost": 16805.85973529874,
+    "cost_container": 10506.683608085157,
+    "cost_lambda": 6299.176127213585,
+    "unserved_pct": 0.0,
+    "util": 0.5672405032914525,
+    "lambda_share": 0.14087421630792926,
+    "energy_wh": 1733248.3820794052
+   },
+   "6_hybrid_rolling": {
+    "cost": 12703.980109959417,
+    "cost_container": 8920.98659606996,
+    "cost_lambda": 3782.993513889456,
+    "unserved_pct": 0.0,
+    "util": 0.7112033367965592,
+    "lambda_share": 0.08540138914986113,
+    "energy_wh": 1688478.1391469974
+   },
+   "8_hybrid_oracle": {
+    "cost": 10878.150416556367,
+    "cost_container": 8605.490359231011,
+    "cost_lambda": 2272.6600573253577,
+    "unserved_pct": 0.0,
+    "util": 0.7611071594545732,
+    "lambda_share": 0.055840658063728434,
+    "energy_wh": 1681292.8882213286
+   }
+  },
+  "lambda_price_x0.5": {
+   "1_all_lambda": {
+    "cost": 26912.81532082484,
+    "cost_container": 0.0,
+    "cost_lambda": 26912.81532082484,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1028649.2749052244
+   },
+   "3_reactive_u0.3": {
+    "cost": 34698.076171875,
+    "cost_container": 34698.076171875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.843822956085205,
+    "util": 0.27936607599258423,
+    "lambda_share": 0.0,
+    "energy_wh": 2340649.21875
+   },
+   "5_hybrid_static": {
+    "cost": 15035.2759065476,
+    "cost_container": 9544.337445216803,
+    "cost_lambda": 5490.938461330798,
+    "unserved_pct": 0.0,
+    "util": 0.810483590608151,
+    "lambda_share": 0.2565998951195242,
+    "energy_wh": 1471456.3193252687
+   },
+   "6_hybrid_rolling": {
+    "cost": 13708.766976344736,
+    "cost_container": 9601.20606785467,
+    "cost_lambda": 4107.560908490067,
+    "unserved_pct": 0.0,
+    "util": 0.8750619132818321,
+    "lambda_share": 0.19258432088303334,
+    "energy_wh": 1513424.6735421377
+   },
+   "8_hybrid_oracle": {
+    "cost": 12753.147921467278,
+    "cost_container": 9654.635890044978,
+    "cost_lambda": 3098.5120314223004,
+    "unserved_pct": 0.0,
+    "util": 0.912286981970945,
+    "lambda_share": 0.15355258443301176,
+    "energy_wh": 1526428.4565671524
+   }
+  },
+  "lambda_price_x2": {
+   "1_all_lambda": {
+    "cost": 107651.26128329936,
+    "cost_container": 0.0,
+    "cost_lambda": 107651.26128329936,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1028649.2749052244
+   },
+   "3_reactive_u0.3": {
+    "cost": 34698.076171875,
+    "cost_container": 34698.076171875,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.843822956085205,
+    "util": 0.27936607599258423,
+    "lambda_share": 0.0,
+    "energy_wh": 2340649.21875
+   },
+   "5_hybrid_static": {
+    "cost": 29330.438089371066,
+    "cost_container": 18344.40055912315,
+    "cost_lambda": 10986.037530247915,
+    "unserved_pct": 0.0,
+    "util": 0.49771565436618626,
+    "lambda_share": 0.12255999469966296,
+    "energy_wh": 1826653.3413748061
+   },
+   "6_hybrid_rolling": {
+    "cost": 20635.484708131757,
+    "cost_container": 14303.175521964891,
+    "cost_lambda": 6332.309186166869,
+    "unserved_pct": 0.0,
+    "util": 0.6755136246098044,
+    "lambda_share": 0.07146305795282205,
+    "energy_wh": 1724721.5307213515
+   },
+   "8_hybrid_oracle": {
+    "cost": 17286.48036942947,
+    "cost_container": 13689.379888166844,
+    "cost_lambda": 3597.1004812626243,
+    "unserved_pct": 0.0,
+    "util": 0.7265119563758202,
+    "lambda_share": 0.04421733935143744,
+    "energy_wh": 1712676.1268555052
+   }
+  },
+  "ec2_savings_-30pct_hypothetical": {
+   "1_all_lambda": {
+    "cost": 53825.63064164968,
+    "cost_container": 0.0,
+    "cost_lambda": 53825.63064164968,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1028649.2749052244
+   },
+   "3_reactive_u0.3": {
+    "cost": 24288.652954101562,
+    "cost_container": 24288.652954101562,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.843822956085205,
+    "util": 0.27936607599258423,
+    "lambda_share": 0.0,
+    "energy_wh": 2340649.21875
+   },
+   "5_hybrid_static": {
+    "cost": 17207.167365218163,
+    "cost_container": 10738.87836920643,
+    "cost_lambda": 6468.2889960117345,
+    "unserved_pct": 0.0,
+    "util": 0.5797472137272985,
+    "lambda_share": 0.145263678286427,
+    "energy_wh": 1717104.470028053
+   },
+   "6_hybrid_rolling": {
+    "cost": 13151.666534818069,
+    "cost_container": 9265.626195748015,
+    "cost_lambda": 3886.040339070054,
+    "unserved_pct": 0.0,
+    "util": 0.7173490586510828,
+    "lambda_share": 0.08748529008588526,
+    "energy_wh": 1683033.1278161614
+   },
+   "8_hybrid_oracle": {
+    "cost": 11309.319558092984,
+    "cost_container": 8957.353768203126,
+    "cost_lambda": 2351.965789889858,
+    "unserved_pct": 0.0,
+    "util": 0.7662985066718795,
+    "lambda_share": 0.057649919391166524,
+    "energy_wh": 1676842.7164643654
+   }
+  },
+  "fargate_base": {
+   "1_all_lambda": {
+    "cost": 53825.63064164968,
+    "cost_container": 0.0,
+    "cost_lambda": 53825.63064164968,
+    "unserved_pct": 0.0,
+    "util": NaN,
+    "lambda_share": 1.0,
+    "energy_wh": 1028649.2749052244
+   },
+   "3_reactive_u0.3": {
+    "cost": 80347.734375,
+    "cost_container": 80347.734375,
+    "cost_lambda": 0.0,
+    "unserved_pct": 6.843822956085205,
+    "util": 0.27936607599258423,
+    "lambda_share": 0.0,
+    "energy_wh": 2340649.21875
+   },
+   "5_hybrid_static": {
+    "cost": 32623.953941915082,
+    "cost_container": 20573.125084411335,
+    "cost_lambda": 12050.828857503744,
+    "unserved_pct": 0.0,
+    "util": 0.8454558725411808,
+    "lambda_share": 0.27813566031740544,
+    "energy_wh": 1442985.3907340325
+   },
+   "6_hybrid_rolling": {
+    "cost": 30271.57529651422,
+    "cost_container": 21182.599256847065,
+    "cost_lambda": 9088.976039667155,
+    "unserved_pct": 0.0,
+    "util": 0.8985381426300612,
+    "lambda_share": 0.21008539465314732,
+    "energy_wh": 1493216.809796665
+   },
+   "8_hybrid_oracle": {
+    "cost": 28500.769302816145,
+    "cost_container": 21561.735197726564,
+    "cost_lambda": 6939.034105089579,
+    "unserved_pct": 0.0,
+    "util": 0.9293707845807574,
+    "lambda_share": 0.16835668584557067,
+    "energy_wh": 1510802.9047308273
+   }
+  },
+  "integer_instances_per_app": {
+   "6_hybrid_rolling": {
+    "cost": 17732.694009910345,
+    "cost_container": 13682.591999999999,
+    "cost_lambda": 4050.1020099103434,
+    "unserved_pct": 0.0,
+    "util": 0.6897312756630992,
+    "lambda_share": 0.09305510142421632,
+    "energy_wh": 1694303.7068883355
+   },
+   "8_hybrid_oracle": {
+    "cost": 16036.230420726497,
+    "cost_container": 13348.608,
+    "cost_lambda": 2687.6224207264972,
+    "unserved_pct": 0.0,
+    "util": 0.7269479159343339,
+    "lambda_share": 0.06745052621304348,
+    "energy_wh": 1689357.2681946964
+   }
+  }
+ },
+ "per_app_ratio_rolling_vs_best_single": {
+  "p5": 0.2750860297183997,
+  "p25": 0.43066149597040987,
+  "p50": 0.5830231648816957,
+  "p75": 0.8651777524398111,
+  "p95": 1.0048064138003725
+ },
+ "per_app_frac_hybrid_cheaper_than_all_lambda": 0.9042553191489362
+}

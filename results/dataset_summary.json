@@ -18,5 +18,15 @@
   },
   "selection_rule": "present on all 14 days AND total invocations / (14*1440 min) >= 5",
   "memory_days_available": 12,
-  "heavy_functions": null
+  "heavy_functions": 94,
+  "heavy_by_trigger": {
+    "event": 17,
+    "http": 16,
+    "orchestration": 8,
+    "others": 0,
+    "queue": 48,
+    "storage": 5,
+    "timer": 0
+  },
+  "heavy_rule": "min(all-Lambda, peak-x1.2 EC2 containers) monthly cost on TRAIN days >= $50"
 }

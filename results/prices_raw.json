@@ -1,0 +1,92 @@
+{
+ "region": "ap-south-1",
+ "retrieved": "2026-10-24",
+ "source": "AWS Price List API (get_products)",
+ "lambda_raw": [
+  [
+   "AWS-Lambda-Duration",
+   "APS3-Lambda-GB-Second",
+   "AWS Lambda - Total Compute - Asia Pacific (Mumbai)-Tier-1",
+   "Lambda-GB-Second",
+   1.66667e-05
+  ],
+  [
+   "AWS-Lambda-Duration",
+   "APS3-Lambda-GB-Second",
+   "AWS Lambda - Total Compute - Asia Pacific (Mumbai)-Tier-3",
+   "Lambda-GB-Second",
+   1.33334e-05
+  ],
+  [
+   "AWS-Lambda-Duration",
+   "APS3-Lambda-GB-Second",
+   "AWS Lambda - Total Compute - Asia Pacific (Mumbai)-Tier-2",
+   "Lambda-GB-Second",
+   1.5e-05
+  ],
+  [
+   "AWS-Lambda-Requests",
+   "APS3-Request",
+   "AWS Lambda - Total Requests - Asia Pacific (Mumbai)",
+   "Request",
+   2e-07
+  ]
+ ],
+ "ec2_t3_medium_raw": [
+  [
+   "$0.0448 per On Demand Linux t3.medium Instance Hour",
+   "Hrs",
+   0.0448
+  ]
+ ],
+ "fargate_raw": [
+  [
+   "APS3-Fargate-ARM-GB-Hours",
+   "AWS Fargate - ARM - Memory - Asia Pacific (Mumbai)",
+   "hours",
+   0.00261
+  ],
+  [
+   "APS3-Fargate-Windows-GB-Hours",
+   "AWS Fargate - Windows - Memory  - Asia Pacific (Mumbai)",
+   "hours",
+   0.00535325
+  ],
+  [
+   "APS3-Fargate-Windows-OS-Hours:perCPU",
+   "AWS Fargate - Windows - OS  - Asia Pacific (Mumbai)",
+   "hours",
+   0.046
+  ],
+  [
+   "APS3-Fargate-ARM-vCPU-Hours:perCPU",
+   "AWS Fargate - ARM - vCPU - Asia Pacific (Mumbai)",
+   "hours",
+   0.02383
+  ],
+  [
+   "APS3-Fargate-vCPU-Hours:perCPU",
+   "AWS Fargate - vCPU  - Asia Pacific (Mumbai)",
+   "hours",
+   0.04256
+  ],
+  [
+   "APS3-Fargate-GB-Hours",
+   "AWS Fargate - Memory  - Asia Pacific (Mumbai)",
+   "hours",
+   0.004655
+  ],
+  [
+   "APS3-Fargate-Windows-vCPU-Hours:perCPU",
+   "AWS Fargate - Windows - vCPU  - Asia Pacific (Mumbai)",
+   "hours",
+   0.048944
+  ],
+  [
+   "APS3-Fargate-EphemeralStorage-GB-Hours",
+   "AWS Fargate - Ephemeral Storage - Asia Pacific (Mumbai)",
+   "GB-Hours",
+   0.000127
+  ]
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "region": "ap-south-1",
+ "retrieved": "2026-10-24",
+ "source": "AWS Price List API",
+ "values": {
+  "lambda_gbs": 1.66667e-05,
+  "lambda_req": 2e-07,
+  "t3_medium_h": 0.0448,
+  "fargate_vcpu_h": 0.04256,
+  "fargate_gb_h": 0.004655
+ },
+ "notes": "Lambda tier-1 duration price; Fargate x86 Linux; t3.medium Linux on-demand shared tenancy"
+}
