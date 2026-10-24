@@ -20,6 +20,7 @@ INTERVAL = 4 * max(CAL['launch_to_healthy_s'] + [CAL.get('launch_to_healthy_s_fi
 
 def build(pagemap=None):
     d = Doc(ROOT / "report_template/Skyline_Weather_Devops_Mini_Project_Report.docx")
+    cp = d.d.core_properties; cp.title = "CostScale: ML-Driven Hybrid Container and Serverless Resource Management on AWS - Detailed Project Report"; cp.author = "Anamay Narkar, Ananya Dhiman, Anoushka Nelson"; cp.last_modified_by = cp.author; cp.subject = "Cloud computing project report"; cp.keywords = ""; cp.comments = ""
     # ------------------------------------------------ cover
     d.para("", after=40)
     d.para("COSTSCALE", "c", size=22, bold=True, after=14, spacing=1.15)
