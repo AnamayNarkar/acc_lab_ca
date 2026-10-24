@@ -1,20 +1,4 @@
-# Commands (run from the repo root)
-
-## Before recording
-
-```
-make up
-```
-
-```
-. infra/env.sh && .venv/bin/python infra/set_ip.py
-```
-
-```
-demo/preflight.sh
-```
-
-## During recording
+# Commands during recording (run from the repo root)
 
 ```
 .venv/bin/python demo/show_results.py sim
@@ -38,10 +22,4 @@ LIVE_OUTDIR=results/live_demo INTERVAL_OVERRIDE=20 .venv/bin/python controller/r
 
 ```
 make down
-```
-
-## If requests time out
-
-```
-. infra/env.sh && .venv/bin/python infra/set_ip.py
 ```
