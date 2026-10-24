@@ -1,0 +1,22 @@
+{
+  "source": "Azure Functions 2019 trace, CC-BY; Shahrad et al., 'Serverless in the Wild', USENIX ATC 2020",
+  "day1_functions": 46412,
+  "functions_on_all_14_days": 28859,
+  "functions_total_distinct": 72359,
+  "median_invocations_per_day_day1": 32.0,
+  "functions_avg_ge_5rpm_any_presence": 2594,
+  "functions_avg_ge_5rpm_all14days": 2127,
+  "functions_with_traffic_duration_memory": 2066,
+  "trigger_counts_selected": {
+    "http": 620,
+    "queue": 619,
+    "timer": 348,
+    "event": 322,
+    "orchestration": 104,
+    "storage": 52,
+    "others": 1
+  },
+  "selection_rule": "present on all 14 days AND total invocations / (14*1440 min) >= 5",
+  "memory_days_available": 12,
+  "heavy_functions": null
+}
