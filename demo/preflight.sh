@@ -21,7 +21,7 @@ echo "== what is running now"
 N_ASG=$(aws autoscaling describe-auto-scaling-groups --query "length(AutoScalingGroups[?starts_with(AutoScalingGroupName,'costscale')])" --output text 2>/dev/null)
 N_ALB=$(aws elbv2 describe-load-balancers --query "length(LoadBalancers[?starts_with(LoadBalancerName,'costscale')])" --output text 2>/dev/null)
 N_EC2=$(aws ec2 describe-instances --filters Name=tag:project,Values=costscale Name=instance-state-name,Values=pending,running --query 'length(Reservations[].Instances[])' --output text 2>/dev/null)
-echo "  ASGs=$N_ASG  load balancers=$N_ALB  running instances=$N_EC2  (ASGs/instances at 0 = no servers; a load balancer count above 0 means the ALB is still billing about $0.024/h until make down)"
+echo "  ASGs=$N_ASG  load balancers=$N_ALB  running instances=$N_EC2  (ASGs/instances at 0 = no servers; a load balancer count above 0 means the ALB is still billing about \$0.024/h until make down)"
 echo "== spend so far (Cost Explorer lags about a day)"
 .venv/bin/python infra/cost.py 2>&1 | grep -v Warning | tail -6
 echo "== laptop public IP (the ALB security group must contain it; the load generator adds it automatically)"
