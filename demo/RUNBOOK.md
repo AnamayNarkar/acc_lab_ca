@@ -24,7 +24,7 @@ Expected: `{"backend": "lambda", ...}` (the ASG has no instances; weights are 0 
 
 Then show the controller shift traffic (one arm at an accelerated interval, about 3 minutes):
 ```
-INTERVAL_OVERRIDE=20 .venv/bin/python controller/run_experiments.py C
+LIVE_OUTDIR=results/live_demo INTERVAL_OVERRIDE=20 .venv/bin/python controller/run_experiments.py C
 ```
 Open the CloudWatch dashboard `CostScale` (region ap-south-1) in a browser while it runs.
 

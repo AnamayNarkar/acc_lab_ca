@@ -26,7 +26,7 @@ def drain():
         if not g["Instances"]: break
         time.sleep(5)
 for a in sel:
-    arm = ARMS[a]; out = ROOT / "results/live" / arm; out.mkdir(parents=True, exist_ok=True)
+    arm = ARMS[a]; out = ROOT / os.environ.get("LIVE_OUTDIR", "results/live") / arm; out.mkdir(parents=True, exist_ok=True)   # LIVE_OUTDIR keeps demo runs from overwriting the recorded results
     drain(); time.sleep(20)
     t_start = datetime.datetime.utcnow()
     env = dict(os.environ, ARM=arm, INTERVAL_S=str(interval), OUTDIR=str(out))
